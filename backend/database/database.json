@@ -1,0 +1,1180 @@
+{
+  "users": [
+    {
+      "id": "usr_demo_student_01",
+      "name": "Nataraj (MCA Scholar)",
+      "email": "student@studymate.ai",
+      "password_hash": "$2a$10$D44daVqxsDaTtYhYYtPkzuGcjp2iXUKKZ4F2JXGLJ2moajztD2iyq",
+      "target_exam": "Semester End MCA / Tech Exams",
+      "created_at": "2026-09-22T08:38:17.710Z"
+    },
+    {
+      "id": "usr_2a7521d8",
+      "name": "sabari",
+      "email": "sabari@college.edu",
+      "password_hash": "$2a$10$juCK8QKSSKf7brKJj/jQM.7ruhAEvzKgk7/E4r641mPM4/lXYPJ0C",
+      "target_exam": "MCA Semester Exams",
+      "created_at": "2026-10-01T02:58:27.001Z"
+    },
+    {
+      "id": "usr_a4e5d2ba",
+      "name": "sabari",
+      "email": "sabari@collegeedu",
+      "password_hash": "$2a$10$UADd1eKSzI5QP35KfFrHievFAoBuHKAcXp/vMXJJM8wX1H4IyLjpG",
+      "target_exam": "MCA Semester Exams",
+      "created_at": "2026-10-02T11:37:30.064Z"
+    },
+    {
+      "id": "usr_570a402e",
+      "name": "Nataraj Test User",
+      "email": "nataraj.storage@college.edu",
+      "password_hash": "$2a$10$tImNDkMQKH/ou3W2Qakv9u1aC8PEh0kCchcUDujYdvqjQoJNcEEZi",
+      "target_exam": "Anna University MCA Semester 4",
+      "college_name": "Sastha Arts & Science College",
+      "department": "Department of Computer Applications (MCA)",
+      "phone": "9876543210",
+      "login_count": 2,
+      "last_login_at": "2026-10-02T12:29:46.658Z",
+      "created_at": "2026-10-02T12:29:46.443Z",
+      "updated_at": "2026-10-02T12:29:46.675Z"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_os_unit_1",
+      "user_id": "usr_demo_student_01",
+      "file_name": "Operating Systems Unit 1.pdf",
+      "file_type": "pdf",
+      "file_size": 245890,
+      "file_url": "/uploads/demo_os_unit1.pdf",
+      "subject": "Operating Systems",
+      "extracted_text": "OPERATING SYSTEMS - UNIT 1: PROCESS MANAGEMENT & DEADLOCKS\n\n1. INTRODUCTION TO OPERATING SYSTEM\nAn Operating System (OS) is system software that acts as an intermediary between computer hardware and the computer user. Its primary goals are to make the computer system convenient to use, allocate hardware resources efficiently, and provide an environment in which user programs can run smoothly. Key functions include Process Management, Memory Management, File System Management, I/O System Management, and Protection/Security.\n\n2. PROCESS MANAGEMENT & PCB\nA Process is defined as a program in execution. Unlike a passive program stored on disk, a process is an active entity with a Program Counter, Stack, Data section, and Heap.\nProcess States:\n- New: The process is being created.\n- Ready: The process is waiting to be assigned to a processor.\n- Running: Instructions are being executed by the CPU.\n- Waiting/Blocked: The process is waiting for some event (such as I/O completion or signal reception).\n- Terminated: The process has finished execution.\n\nProcess Control Block (PCB):\nThe PCB contains vital information associated with a specific process:\n- Process State\n- Program Counter (PC)\n- CPU Registers (Accumulators, index registers, stack pointers)\n- CPU Scheduling Information (Priority, scheduling queue pointers)\n- Memory-Management Information (Base/limit registers, page tables)\n- Accounting Information (CPU time used, time limits)\n- I/O Status Information (List of allocated I/O devices, list of open files).\n\nContext Switching:\nContext switch is the mechanism of saving the state of the currently running process and restoring the state of another ready process so that CPU execution can be resumed from where it left off. The context is saved in the PCB. Context switch time is pure overhead because the system does no useful work while switching.\n\n3. CPU SCHEDULING ALGORITHMS\nCPU Scheduling is the process of deciding which process in the ready queue gets the CPU when the CPU becomes idle.\nScheduling Criteria:\n- CPU Utilization: Keep the CPU as busy as possible (target: 40% to 90%).\n- Throughput: Number of processes completed per unit time.\n- Turnaround Time: Interval from submission of process to its completion.\n- Waiting Time: Total amount of time a process spends waiting in the ready queue.\n- Response Time: Time taken from submission until the first response is produced.\n\nKey Algorithms:\n1. First-Come, First-Served (FCFS): Non-preemptive. Simple FIFO queue. Suffers from Convoy Effect (short processes waiting behind long CPU-bound process).\n2. Shortest Job First (SJF): Selects process with shortest next CPU burst. Provably optimal in minimizing average waiting time. Difficult to know future CPU burst length in practice.\n3. Shortest Remaining Time First (SRTF): Preemptive version of SJF.\n4. Round Robin (RR): Designed for time-sharing systems. Each process gets a small unit of CPU time (time quantum, typically 10-100 ms). Preemptive. High responsiveness. If time quantum is too large, RR behaves like FCFS; if too small, context switch overhead dominates.\n5. Priority Scheduling: CPU allocated to highest priority process. Can lead to Starvation/Indefinite Blocking. Solution is Aging (gradually increasing priority of waiting processes).\n\n4. DEADLOCKS\nA Deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource held by some other process in the same set.\n\nCoffman's Four Necessary Conditions for Deadlock:\n1. Mutual Exclusion: At least one resource must be held in a non-shareable mode.\n2. Hold and Wait: A process must be holding at least one resource and waiting to acquire additional resources currently held by other processes.\n3. No Preemption: Resources cannot be preempted; a resource can be released only voluntarily by the process holding it after completing its task.\n4. Circular Wait: A closed chain of processes exists such that each process holds at least one resource needed by the next process in the cycle (P0 -> P1 -> P2 -> ... -> P0).\n\nDeadlock Handling Strategies:\n- Deadlock Prevention: Invalidate at least one of the four Coffman conditions (e.g., require processes to request all resources at once, or impose linear ordering of resource types).\n- Deadlock Avoidance: System dynamically examines resource allocation state to ensure safe state. Banker's Algorithm is the classic avoidance algorithm for multiple instances of resources.\n- Deadlock Detection and Recovery: Allow deadlock to occur, detect it via Wait-For Graphs or detection algorithms, then recover via process termination or resource preemption.\n- Deadlock Ignorance (Ostrich Algorithm): Stick head in the sand and pretend deadlocks never occur; used by most modern operating systems like Windows and Linux due to high overhead of avoidance.",
+      "created_at": "2026-09-24T08:38:17.719Z",
+      "status": "completed"
+    },
+    {
+      "id": "doc_dbms_unit_1",
+      "user_id": "usr_demo_student_01",
+      "file_name": "DBMS Unit 1 - Relational Model & Architecture.pdf",
+      "file_type": "pdf",
+      "file_size": 312400,
+      "file_url": "/uploads/demo_dbms_unit1.pdf",
+      "subject": "Database Management Systems",
+      "extracted_text": "DATABASE MANAGEMENT SYSTEMS - UNIT 1: ARCHITECTURE & RELATIONAL MODEL\n\n1. INTRODUCTION TO DATABASE SYSTEMS\nA Database Management System (DBMS) is software designed to store, manage, query, and retrieve data efficiently while maintaining integrity, concurrency, and security.\nAdvantages over traditional File Processing Systems:\n- Reduction in Data Redundancy and Inconsistency\n- Data Isolation and Independence\n- Atomic Transactions (ACID properties)\n- Concurrent Multi-user Access without race conditions\n- Robust Security and Authorization mechanisms.\n\n2. THREE-SCHEMA ARCHITECTURE (ANSI/SPARC)\nThe Three-Schema architecture separates user applications from the physical database:\n1. Physical / Internal Level: Describes how data is actually stored on physical secondary storage media (B-trees, hashing, indexing, record formats).\n2. Conceptual / Logical Level: Describes what data is stored in the entire database and relationships among data (entities, attributes, relationships, constraints). Managed by DBA.\n3. External / View Level: Describes part of database that a particular user group is interested in (custom views, hidden sensitive columns).\n\nData Independence:\n- Logical Data Independence: Capacity to change conceptual schema without altering external schemas or application programs (e.g., adding a new attribute).\n- Physical Data Independence: Capacity to change internal/physical storage schema without altering conceptual schema (e.g., rebuilding an index or changing disk files). Physical data independence is easier to achieve than logical.\n\n3. RELATIONAL MODEL CONCEPTS\nProposed by E.F. Codd in 1970.\n- Relation: Represented as a two-dimensional Table.\n- Tuple: A row in a relation representing an entity instance.\n- Attribute: A named column representing a property of the relation.\n- Domain: Set of permitted atomic values for an attribute.\n- Cardinality: Number of tuples (rows) in a relation.\n- Degree / Arity: Number of attributes (columns) in a relation.\n\nIntegrity Constraints:\n1. Domain Constraint: Every attribute value must be atomic and drawn from defined domain.\n2. Entity Integrity Constraint: No primary key attribute value can be NULL because it uniquely identifies tuples.\n3. Referential Integrity Constraint: Foreign key values in referencing relation must either match a valid primary key value in the referenced relation, or be NULL.\n4. Key Constraint: Minimal superkey that uniquely identifies tuples.\n\n4. RELATIONAL ALGEBRA\nProcedural query language comprising operations that take one or two relations as input and produce a new relation as output:\n- Selection (σ): Selects tuples that satisfy a given predicate.\n- Projection (π): Selects specified columns/attributes.\n- Cartesian Product (X): Combines all tuples from two relations.\n- Set Union (∪), Intersection (∩), Difference (-).\n- Join (⋈): Combines related tuples from two relations based on join conditions (Theta join, Equi join, Natural join).\n- Rename (ρ): Renames relation and attribute names.",
+      "created_at": "2026-09-26T08:38:17.719Z",
+      "status": "completed"
+    },
+    {
+      "id": "doc_2309d46d",
+      "user_id": "usr_demo_student_01",
+      "file_name": "test_notes.txt",
+      "file_type": "txt",
+      "file_size": 192,
+      "file_url": "/uploads/1790936786766-7dafa3-test_notes.txt",
+      "subject": "Operating Systems",
+      "extracted_text": "Operating System Process Synchronization.\nCritical Section Problem involves Mutual Exclusion, Progress, and Bounded Waiting.\nSemaphores and Mutex locks are standard synchronization primitives.",
+      "status": "completed",
+      "created_at": "2026-10-02T10:26:26.830Z"
+    },
+    {
+      "id": "doc_4b631dbd",
+      "user_id": "usr_a4e5d2ba",
+      "file_name": "Unit 1_IoT.pptx",
+      "file_type": "pptx",
+      "file_size": 2574994,
+      "file_url": "/uploads/1790941258670-69f87c-Unit_1_IoT.pptx",
+      "subject": "iot",
+      "extracted_text": "--- Slide 1 ---\nCourse Name: INTERNET OF THINGS Course code: 25mc302 UNIT I: Foundations of IoT DR.M.Sivakami Assistant Professor Department of Computer Applications – (MCA) NPR College of Engineering and Technology D\n\n--- Slide 3 ---\nIntroduction to Internet of Things (IoT) Definition and Characteristics of IoT Physical and Logical Design of IoT IoT Enabling Technologies Embedded Systems Microprocessors and Microcontrollers for IoT Sensors and Actuators Smart Objects IoT Communication Models and APIs IoT Architecture oneM2M and IoT World Forum ( IoTWF ) Architecture Edge, Fog and Cloud Computing in IoT Wireless Sensor Networks\n\n--- Slide 4 ---\nDefinition and Characteristics of IoT Definition The Internet of Things (IoT) refers to a network of physical objects embedded with sensors, software, and network connectivity. These devices can collect and exchange data over the internet, allowing physical environments to interact with digital systems without requiring direct human intervention.\n\n--- Slide 5 ---\nCharacteristics of IoT 1. Connectivity: Devices are connected through communication networks. like Wi-Fi , Bluetooth, or Zigbee . This allows continuous remote data exchange and monitoring. 2.Intelligence &amp; Identity: Each IoT device have a unique identity (such as an IP address) and Data is processed to generate useful information and decisions. 3. Dynamic Adaptability: IoT systems can autonomously adapt to changing contexts and environmental conditions (e.g., a smart thermostat adjusting based on room occupancy) 4.Scalability &amp; Architecture: An IoT ecosystem can accommodate an ever-growing number of connected devices, and its architecture is generally hybrid, meaning it supports products from various manufacturers . 5.Data-Driven: Systems gather vast amounts of raw data through physical sensors, analyze it (often in the cloud), and trigger useful, automated actions based on the insights gained.\n\n--- Slide 6 ---\nExamples of IoT devices Smart home devices such as thermostats, lighting systems, and security systems. Wearables such as fitness trackers and smartwatches. Healthcare devices such as patient monitoring systems and wearable medical devices. Industrial systems such as predictive maintenance systems and supply chain management systems. Transportation systems such as connected cars and autonomous vehicles.\n\n--- Slide 7 ---\nPhysical Design of IoT Physical design focuses on hardware components and communication protocols . Physical Components Things (Devices) Physical entities equipped with: Sensors Actuators Communication modules Communication Protocols Used for data transmission. Examples: Wi-Fi Bluetooth ZigBee NFC RFID LoRaWAN\n\n--- Slide 8 ---\nLogical Design of IoT The logical design defines how components interact, format information, and behave to achieve the system's goals. Communication Protocols: Standardized rules defining how devices exchange data across the network.( Common IoT protocols such as MQTT, HTTP / REST APIs, CoAP, WebSockets ) IoT Services: Software blocks for data analytics, cloud storage, security, device management, and process automation. User Interfaces (UI): Dashboards, mobile applications, and web apps that allow end-users to monitor telemetry data and control physical nodes remotely.\n\n--- Slide 9 ---\nIoT Enabling Technologies Identification Technologies RFID NFC QR Codes IPv6 Sensing Technologies Temperature Sensors Motion Sensors Pressure Sensors Communication Technologies Wi-Fi Bluetooth ZigBee LoRaWAN 5G Computing Technologies Cloud Computing Fog Computing Edge Computing Data Analytics Transforms raw data into meaningful information. Artificial Intelligence Provides intelligent decision-making capabilities.\n\n--- Slide 10 ---\nEmbedded Systems Embedded systems are the backbone of IoT, enabling smart devices to communicate, process data, and interact with the cloud. Embedded systems are at the core of IoT applications, ensuring efficiency, connectivity, and reliability. Here’s how they contribute: Data Processing in Smart Devices Embedded technology processes sensor data in real time, enabling faster responses. For instance, smart thermostats analyze temperature changes and adjust settings accordingly. Efficient Communication with the Cloud These systems use lightweight protocols to transfer data securely to the cloud, minimizing latency and ensuring real-time insights. Enabling Edge Computing By processing data locally, embedded solutions reduce reliance on cloud computing, improving response times and enhancing data privacy.\n\n--- Slide 11 ---\nMicroprocessors and Microcontrollers for IoT In IoT architecture, Microcontrollers (MCUs) and Microprocessors (MPUs) serve different roles . MCUs are ideal for edge devices requiring low power and real-time control (e.g., sensors). MPUs handle heavy, complex tasks (e.g., Edge AI, video streaming) requiring robust operating systems\n\n--- Slide 12 ---\nSensors and Actuators Sensors Devices that detect physical changes and convert them into electrical signals. Actuators Devices that convert electrical signals into physical actions. Sensor Purpose Temperature Sensor Measures temperature Humidity Sensor Measures moisture Pressure Sensor Measures pressure Gas Sensor Detects gases Light Sensor Measures light intensity Actuator Function Motor Rotational movement Relay Switching operation Valve Fluid control Buzzer Sound generation\n\n--- Slide 13 ---\nSmart Objects Definition Smart objects are physical devices equipped with sensing, processing, communication, and actuation capabilities. Characteristics Unique Identity Connectivity Intelligence Context Awareness Self-Configuration Examples Smart Watch Smart Lock Smart Meter Smart Refrigerator\n\n--- Slide 14 ---\nIoT communication models and APIs IoT communication models define how devices, sensors, gateways, cloud platforms, and applications exchange data. Communication APIs provide standardized interfaces that enable interaction between IoT components. There are four major IoT communication models: Request-Response Model Publish-Subscribe Model Push-Pull Model Exclusive Pair Model\n\n--- Slide 15 ---\nExample Web browser requesting a webpage. Smart home app requesting temperature data from a smart thermostat. In this model, a client sends a request to a server, and the server responds with the requested information. Working Client sends a request. Server processes the request. Server sends a response. 1.Request-Response Model Features Simple communication. Easy implementation. Suitable for on-demand data retrieval. Advantages Reliable communication. Easy to understand and manage. Disadvantages Not suitable for continuous real-time communication. Higher latency for frequent updates. Protocols Used HTTP HTTPS CoAP Architecture Client -------- Request --------&gt; Server Client &lt;------- Response -------- Server\n\n--- Slide 16 ---\nExample Smart city traffic monitoring. Weather monitoring systems Publishers send messages to a broker, and subscribers receive messages from the broker based on subscribed topics. Working Publisher publishes data. Broker receives data. Broker forwards data to subscribers. 2. Publish-Subscribe Model Features . Asynchronous communication. Many-to-many communication Advantages Highly scalable. Efficient network utilization. Decouples sender and receiver . Disadvantages Dependency on broker. More complex management Protocols Used MQTT DDS AMQP Architecture Publisher | V Broker / | \\ V V V Sub1 Sub2 Sub3\n\n--- Slide 17 ---\nData producers push messages into queues, and consumers pull messages from those queues. Working Producer sends data. Queue stores data.Consumer retrieves data. Example Industrial IoT systems. Big Data analytics platforms. 3.Push-Pull Model Features . Load Balancing Distributed Processing Advantages Efficient task distribution Supports Parallel Processing Disadvantages Queue management required. Increased system complexity. Protocols Used ZeroMQ AMQP Architecture Producer -----&gt; Queue -----&gt; Consumer\n\n--- Slide 18 ---\nA persistent and full-duplex connection exists between two endpoints. Working Both devices communicate simultaneously. Continuous connection maintained. Example Smart surveillance cameras. Industrial machine control systems. 4.Exclusive Pair Model Features Real-time communication Dedicated connection. Advantages Low latency. High-speed communication Disadvantages .Higher resource consumption. Less scalable. Protocols Used WebSocket TCP Sockets Architecture Device A &lt;=========&gt; Device B Full Duplex\n\n--- Slide 19 ---\nIoT APIs Definition Application Programming Interfaces (APIs) provide mechanisms through which IoT devices, gateways, cloud services, and applications communicate and exchange information. Types of IoT APIs REST-Based APIs WebSocket APIs CoAP APIs MQTT APIs\n\n--- Slide 20 ---\n{5C22544A-7EE6-4342-B048-85BDC9FD1C3A}Method Purpose GET Retrieve data POST Create data PUT Update data DELETE Remove data 1. REST-Based APIs Definition Representational State Transfer (REST) APIs use HTTP methods for communication. HTTP Methods Example GET /temperature POST /sensor Data Advantages Simple implementation Platform independent Widely supported Applications Smart homes Smart agriculture Smart healthcare\n\n--- Slide 21 ---\n2. WebSocket APIs Definition Provides full-duplex communication between client and server over a single connection. Features Real-time communication Continuous data streaming Applications Smart surveillance Live IoT monitoring dashboards Industrial automation Advantages Low latency Reduced overhead\n\n--- Slide 22 ---\n3. CoAP APIs Definition Constrained Application Protocol (CoAP) is designed for resource-constrained IoT devices. Features Lightweight protocol UDP-based communication Low power consumption Applications Wireless Sensor Networks Smart meters Environmental monitoring Advantages Energy efficient Suitable for constrained devices\n\n--- Slide 23 ---\n4. MQTT APIs Definition Message Queuing Telemetry Transport (MQTT) is a lightweight publish-subscribe messaging protocol. Features Uses broker architecture Low bandwidth consumption Reliable communication Applications Smart cities Vehicle tracking Industrial IoT Advantages Scalable Efficient in low-bandwidth networks\n\n--- Slide 24 ---\n{5C22544A-7EE6-4342-B048-85BDC9FD1C3A}Model Communication Type Protocols Best Use Case Request-Response Client-Server HTTP, CoAP Data retrieval Publish-Subscribe Many-to-Many MQTT, DDS Sensor monitoring Push-Pull Queue-Based AMQP, ZeroMQ Data processing Exclusive Pair One-to-One WebSocket, TCP Real-time control Comparison of IoT Communication Models\n\n--- Slide 25 ---\nComparison of IoT APIs {5C22544A-7EE6-4342-B048-85BDC9FD1C3A}API Transport Protocol Communication Style Suitable For REST HTTP Request-Response Web-based IoT MQTT TCP Publish-Subscribe Sensor Networks CoAP UDP Request-Response Low-power Devices WebSocket TCP Full Duplex Real-Time Systems\n\n--- Slide 26 ---\nIntroduction to IoT Architecture Definition IoT Architecture defines the structure and interaction of devices, networks, data processing systems, and applications in an IoT environment. Objectives Connect physical devices to the internet Collect and process data Enable intelligent decision making Provide services to end users Benefits Scalability Interoperability Reliability Security Four-Layer IoT Architecture Perception Layer Network Layer Processing Layer Application Layer Data Flow Sensors → Network → Processing → Applications\n\n--- Slide 27 ---\nPerception Layer Functions Data collection Object identification Environmental monitoring Components Sensors RFID Tags Cameras Actuators Examples Temperature Sensor Motion Detector Smart Meter\n\n--- Slide 28 ---\nNetwork Layer Functions Data transmission Device connectivity Technologies Wi-Fi Bluetooth ZigBee LoRaWAN 5G Responsibilities Routing Communication Security\n\n--- Slide 29 ---\nProcessing Layer Functions Data storage Data analysis Device management Components • Cloud Platforms • Databases • Analytics Engines Examples AWS IoT Microsoft Azure IoT Google Cloud IoT\n\n--- Slide 30 ---\nApplication Layer Functions User interaction Service delivery Applications Smart Homes Smart Healthcare Smart Agriculture Smart Cities Industrial IoT\n\n--- Slide 31 ---\noneM2M Architecture Definition oneM2M is a global standard for Machine-to-Machine (M2M) and IoT communication. Purpose Interoperability among IoT devices Common service layer Standard APIs Benefits Device independence Scalability Security\n\n--- Slide 32 ---\noneM2M Architecture Components Major Entities 1.Application Entity (AE) Smart Home App Health Monitoring App Smart Farming System 2.Common Services Entity (CSE) Network Services Entity (NSE) Cellular Network Wi-Fi Network Internet Infrastructure\n\n--- Slide 33 ---\nIoT World Forum ( IoTWF ) Architecture Developed By Cisco Systems Objective Provide a common reference model for IoT deployment. Characteristics Seven-layer architecture End-to-end connectivity Security integration IoTWF Seven-Layer Architecture Physical Devices &amp; Controllers Connectivity Edge Computing Data Accumulation Data Abstraction Applications 7.Collaboration &amp; Processes\n\n--- Slide 34 ---\nEdge, Fog and Cloud Computing in IoT Edge Computing Definition Processing data near the data source. Features Local processing Fast response Reduced bandwidth usage Examples Smart Cameras Autonomous Vehicles Industrial Automation Fog Computing Definition Intermediate computing layer between edge devices and cloud. Characteristics •Distributed computing •Localized storage •Network-level intelligence Examples •IoT Gateways •Routers •Local Servers Cloud Computing Definition Centralized computing and storage infrastructure. Services Infrastructure as a Service (IaaS) Platform as a Service (PaaS) Software as a Service (SaaS) Examples AWS Azure Google Cloud\n\n--- Slide 35 ---\nWireless Sensor Networks (WSN) Introduction to WSN Definition A Wireless Sensor Network is a collection of sensor nodes communicating wirelessly to monitor physical conditions. Applications Environmental Monitoring Agriculture Military Surveillance Healthcare Applications of WSN Smart Agriculture Soil monitoring Irrigation control Healthcare Patient monitoring Smart Cities Traffic monitoring Air quality monitoring Industry Equipment monitoring\n\n--- Slide 36 ---\nWireless Sensor Networks (WSN) Components of WSN Sensor Node Components Sensor Unit Processor Unit Memory Unit Radio Transceiver Power Supply WSN Architecture Elements Sensor Nodes Sink Node/Base Station Communication Network Monitoring System Data Flow Sensor Nodes → Sink Node → Server → User\n\n--- Slide 37 ---\nWireless Sensor Networks (WSN) Characteristics of WSN Features Self-organizing Energy efficient Scalable Fault tolerant Wireless communication Challenges in WSN Issues Limited battery power Security threats Network reliability Coverage limitations Data loss\n\n--- Slide 38 ---\nSummary This unit introduces the Internet of Things (IoT) and its characteristics, physical and logical design, and enabling technologies. It covers embedded systems, microprocessors, microcontrollers, sensors, actuators, and smart objects , which form the foundation of IoT devices. The unit also explains IoT communication models and APIs , IoT architecture , oneM2M and IoT World Forum ( IoTWF ) architectures, Edge, Fog, and Cloud Computing , and Wireless Sensor Networks (WSNs) . Overall, it provides the fundamental concepts, architectures, communication technologies, and components required to understand and develop IoT-based applications.\n\n--- Slide 39 ---\nTHANK YOU",
+      "status": "completed",
+      "created_at": "2026-10-02T11:40:59.298Z"
+    }
+  ],
+  "summaries": [
+    {
+      "id": "sum_os_unit_1",
+      "document_id": "doc_os_unit_1",
+      "quick_summary": "Comprehensive overview of Operating System fundamentals focusing on Process Management, Process Control Blocks (PCB), Context Switching, CPU Scheduling algorithms (FCFS, SJF, Round Robin), and Deadlock conditions and resolution strategies.",
+      "detailed_summary": "This unit covers the foundational architecture of process execution and CPU resource distribution in modern operating systems. It begins by contrasting static programs with dynamic processes, enumerates the 5 lifecycle states (New, Ready, Running, Waiting, Terminated), and inspects the internal anatomy of the Process Control Block (PCB). Next, it analyzes CPU scheduling metrics (Throughput, Turnaround, Waiting, and Response times) along with preemptive and non-preemptive algorithms like FCFS (and the Convoy effect), SJF, SRTF, and Round Robin (emphasizing time quantum trade-offs). Finally, it investigates Deadlocks, establishing Coffman’s 4 necessary conditions (Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait) and evaluating Prevention, Banker’s Avoidance Algorithm, Detection/Recovery, and the Ostrich algorithm.",
+      "important_topics": [
+        "Process Lifecycle & 5-State Transition Model",
+        "Process Control Block (PCB) Structure & Fields",
+        "Context Switching Mechanism & Overhead Cost",
+        "CPU Scheduling Algorithms: FCFS, SJF, SRTF, Round Robin & Priority",
+        "Coffman's 4 Necessary Conditions for Deadlock",
+        "Deadlock Handling: Prevention, Banker's Algorithm (Avoidance), Detection & Recovery"
+      ],
+      "keywords": [
+        "Process",
+        "PCB",
+        "Context Switch",
+        "CPU Scheduling",
+        "Convoy Effect",
+        "Turnaround Time",
+        "Waiting Time",
+        "Round Robin",
+        "Time Quantum",
+        "Deadlock",
+        "Mutual Exclusion",
+        "Circular Wait",
+        "Banker's Algorithm",
+        "Aging"
+      ],
+      "definitions": [
+        {
+          "term": "Process",
+          "definition": "A program in execution, consisting of program code, program counter, registers, stack, and heap."
+        },
+        {
+          "term": "Context Switch",
+          "definition": "The mechanism of saving the state of the active process into its PCB and restoring the state of another ready process."
+        },
+        {
+          "term": "Deadlock",
+          "definition": "A state where two or more processes are permanently blocked because each is holding a resource and waiting for another resource held by another process."
+        },
+        {
+          "term": "Convoy Effect",
+          "definition": "A phenomenon in FCFS scheduling where multiple short CPU-bound or I/O processes wait behind one long CPU-bound process."
+        },
+        {
+          "term": "Aging",
+          "definition": "A technique of gradually increasing the priority of processes that wait in the system for a long time to prevent starvation."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Turnaround Time",
+          "formula": "TAT = Completion Time - Arrival Time"
+        },
+        {
+          "name": "Waiting Time",
+          "formula": "WT = Turnaround Time - Burst Time"
+        },
+        {
+          "name": "Banker's Safety Condition",
+          "formula": "Need[i, j] = Max[i, j] - Allocation[i, j] <= Available[j]"
+        },
+        {
+          "name": "Throughput",
+          "formula": "Throughput = Total Processes Completed / Total Time Elapsed"
+        }
+      ],
+      "exam_focus": {
+        "two_marks": [
+          "Define Process and list its 5 states.",
+          "What is a Process Control Block (PCB)? List any four contents.",
+          "Define Context Switching and explain why it is treated as pure overhead.",
+          "State Coffman's four necessary conditions for deadlock.",
+          "What is the Convoy effect in FCFS scheduling?",
+          "Distinguish between Preemptive and Non-Preemptive scheduling."
+        ],
+        "five_marks": [
+          "Explain the 5-state process lifecycle with a neat state transition diagram.",
+          "Compare SJF and Round Robin scheduling algorithms with respect to turnaround and response times.",
+          "What is Starvation in Priority scheduling? How does Aging solve it?",
+          "Explain the Banker's algorithm for deadlock avoidance with safety algorithm steps.",
+          "Differentiate between Deadlock Prevention and Deadlock Avoidance."
+        ],
+        "ten_sixteen_marks": [
+          "Discuss in detail the various CPU scheduling algorithms (FCFS, SJF, SRTF, RR) with suitable Gantt chart examples and compute average turnaround and waiting times.",
+          "What is Deadlock? Explain Coffman's four conditions. Describe how Deadlock Prevention invalidates each condition and how Banker's algorithm maintains a safe state.",
+          "Explain Context Switching in detail. Draw the architectural diagram showing PCB state preservation between Process P0 and Process P1."
+        ]
+      },
+      "created_at": "2026-09-24T08:38:17.719Z"
+    },
+    {
+      "id": "sum_dbms_unit_1",
+      "document_id": "doc_dbms_unit_1",
+      "quick_summary": "Comprehensive examination of Database Management Systems covering File System drawbacks, ANSI/SPARC Three-Schema Architecture, Logical and Physical Data Independence, E.F. Codd Relational Model fundamentals, Integrity Constraints, and Relational Algebra operators.",
+      "detailed_summary": "This study module investigates the evolution of data storage from file systems to modern relational database management systems. It details the ANSI/SPARC 3-tier architecture (Internal, Conceptual, External) and explores both Physical and Logical Data Independence. Core concepts of E.F. Codd's Relational Model are covered including Tuples, Attributes, Domains, Degree, and Cardinality. Crucial integrity constraints (Domain, Entity, Referential, and Key) are explained with real-world foreign key scenarios. Finally, fundamental operators of Relational Algebra (Selection, Projection, Cartesian Product, Set operations, and Joins) are presented as the theoretical foundation for SQL execution.",
+      "important_topics": [
+        "Drawbacks of File Processing Systems vs DBMS",
+        "ANSI/SPARC Three-Schema Architecture",
+        "Logical vs Physical Data Independence",
+        "Relational Model: Relation, Tuple, Attribute, Degree & Cardinality",
+        "Integrity Constraints: Entity, Referential, Domain & Key",
+        "Relational Algebra: Selection (σ), Projection (π), and Joins (⋈)"
+      ],
+      "keywords": [
+        "DBMS",
+        "Three-Schema",
+        "Physical Independence",
+        "Logical Independence",
+        "Relation",
+        "Tuple",
+        "Attribute",
+        "Degree",
+        "Cardinality",
+        "Entity Integrity",
+        "Referential Integrity",
+        "Foreign Key",
+        "Primary Key",
+        "Relational Algebra"
+      ],
+      "definitions": [
+        {
+          "term": "Data Independence",
+          "definition": "The capacity to alter a schema at one level of a database system without having to alter the schema at the next higher level."
+        },
+        {
+          "term": "Entity Integrity",
+          "definition": "Rule stating that no primary key attribute value can be NULL, ensuring every tuple can be uniquely identified."
+        },
+        {
+          "term": "Referential Integrity",
+          "definition": "Rule maintaining consistency between two relations: foreign key values must match an existing primary key value in the referenced relation, or be NULL."
+        },
+        {
+          "term": "Cardinality",
+          "definition": "The total count of rows (tuples) present in a relation."
+        },
+        {
+          "term": "Degree",
+          "definition": "The total count of columns (attributes) defining a relation."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Relational Selection",
+          "formula": "σ <condition> (Relation)"
+        },
+        {
+          "name": "Relational Projection",
+          "formula": "π <attribute_list> (Relation)"
+        },
+        {
+          "name": "Cartesian Product Cardinality",
+          "formula": "|R × S| = |R| × |S|"
+        },
+        {
+          "name": "Natural Join",
+          "formula": "R ⋈ S = π(σ R.A = S.A (R × S))"
+        }
+      ],
+      "exam_focus": {
+        "two_marks": [
+          "State any four advantages of DBMS over File Processing Systems.",
+          "Define Degree and Cardinality of a relation.",
+          "What is Entity Integrity constraint?",
+          "What is Referential Integrity constraint? Give an example.",
+          "Distinguish between Physical and Logical Data Independence.",
+          "Define Selection (σ) and Projection (π) operators in relational algebra."
+        ],
+        "five_marks": [
+          "Explain ANSI/SPARC 3-Schema Architecture with a neat diagram.",
+          "Differentiate between Primary Key, Candidate Key, Super Key, and Foreign Key.",
+          "Explain the concept of Data Independence and why Physical data independence is easier to achieve.",
+          "Describe the fundamental operations in Relational Algebra with examples."
+        ],
+        "ten_sixteen_marks": [
+          "Describe in detail the 3-Tier ANSI/SPARC Architecture. Explain how it provides Logical and Physical Data Independence with relevant examples.",
+          "Explain Codd's Relational Model concepts in detail. Discuss all integrity constraints with suitable student-course database schemas.",
+          "Explain Relational Algebra fundamental and extended operations (Selection, Projection, Cartesian Product, Union, Set Difference, and Joins) with sample relations and queries."
+        ]
+      },
+      "created_at": "2026-09-26T08:38:17.719Z"
+    },
+    {
+      "id": "sum_305d22ba",
+      "document_id": "doc_2309d46d",
+      "quick_summary": "Operating System Process Synchronization.\nCritical Section Problem involves Mutual Exclusion, Progress, and Bounded Waiting.\nSemaphores and Mutex locks are standard synchronization primitives.",
+      "detailed_summary": "Operating System Process Synchronization.\nCritical Section Problem involves Mutual Exclusion, Progress, and Bounded Waiting.\nSemaphores and Mutex locks are standard synchronization primitives.",
+      "important_topics": [
+        "Core Theoretical Architecture and Fundamentals",
+        "Operational Lifecycle and Process Transition",
+        "Key Mathematical Formulations and Metrics",
+        "System Constraints, Trade-offs and Best Practices"
+      ],
+      "keywords": [
+        "Operating",
+        "Process",
+        "Synchronization",
+        "Critical",
+        "Problem",
+        "involves",
+        "Mutual",
+        "Exclusion",
+        "Progress",
+        "Bounded",
+        "Waiting",
+        "Semaphores",
+        "Mutex",
+        "standard",
+        "synchronization",
+        "primitives"
+      ],
+      "definitions": [
+        {
+          "term": "Core Subject Topic",
+          "definition": "The foundational architectural paradigm examined within this study document."
+        },
+        {
+          "term": "Key Mechanism",
+          "definition": "The primary algorithm or protocol responsible for ensuring state consistency and performance."
+        }
+      ],
+      "formulas": [],
+      "exam_focus": {
+        "two_marks": [
+          "Define Operating and give its purpose.",
+          "What are the key characteristics of Process?",
+          "Differentiate between Synchronization and Critical.",
+          "State the necessary conditions required for Core Theoretical Architecture and Fundamentals."
+        ],
+        "five_marks": [
+          "Explain the architectural workflow of Core Theoretical Architecture and Fundamentals with a neat schematic diagram.",
+          "Compare and contrast the primary approaches used in Operating.",
+          "Discuss the advantages and limitations of Process in practical college implementations."
+        ],
+        "ten_sixteen_marks": [
+          "Elaborate in detail on Core Theoretical Architecture and Fundamentals. Explain its internal components, workflow lifecycle, and mathematical formulation with suitable diagrams.",
+          "Provide an in-depth analysis of Operational Lifecycle and Process Transition. Discuss real-world case scenarios, trade-offs, and design considerations for university examinations."
+        ]
+      },
+      "created_at": "2026-10-02T10:26:26.856Z"
+    },
+    {
+      "id": "sum_64cbeaa6",
+      "document_id": "doc_4b631dbd",
+      "quick_summary": "--- Slide 1 ---\nCourse Name: INTERNET OF THINGS Course code: 25mc302 UNIT I: Foundations of IoT DR.M.Sivakami Assistant Professor Department of Computer Applications – (MCA) NPR College of Engineering and Technology D --- Slide 3 ---\nIntroduction to Internet of Things (IoT) Definition and Characteristics of IoT Physica...",
+      "detailed_summary": "--- Slide 1 ---\nCourse Name: INTERNET OF THINGS Course code: 25mc302 UNIT I: Foundations of IoT DR.M.Sivakami Assistant Professor Department of Computer Applications – (MCA) NPR College of Engineering and Technology D\n\n--- Slide 3 ---\nIntroduction to Internet of Things (IoT) Definition and Characteristics of IoT Physical and Logical Design of IoT IoT Enabling Technologies Embedded Systems Microprocessors and Microcontrollers for IoT Sensors and Actuators Smart Objects IoT Communication Models and APIs IoT Architecture oneM2M and IoT World Forum ( IoTWF ) Architecture Edge, Fog and Cloud Computing in IoT Wireless Sensor Networks\n\n--- Slide 4 ---\nDefinition and Characteristics of IoT Definition The Internet of Things (IoT) refers to a network of physical objects embedded with sensors, software, and network connectivity. These devices can collect and exchange data over the internet, allowing physical environments to interact with digital systems without requiring direct human intervention.\n\n--- Slide 5 ---\nCharacteristics of IoT 1. Connectivity: Devices are connected through communication networks. like Wi-Fi , Bluetooth, or Zigbee . This allows continuous remote data exchange and monitoring. 2.Intelligence &amp; Identity: Each IoT device have a unique identity (such as an IP address) and Data is processed to generate useful information and decisions. 3. Dynamic Adaptability: IoT systems can autonomously adapt to changing contexts and environmental conditions (e.g., a smart thermostat adjusting based on room occupancy) 4.Scalability &amp; Architecture: An IoT ecosystem can accommodate an ever-growing number of connected devices, and its architecture is generally hybrid, meaning it supports products from various manufacturers . 5.Data-Driven: Systems gather vast amounts of raw data through physical sensors, analyze it (often in the cloud), and trigger useful, automated actions based on the insights gained.\n\n--- Slide 6 ---\nExamples of IoT devices Smart home devices such as thermostats, lighting systems, and security systems. Wearables such as fitness trackers and smartwatches. Healthcare devices such as patient monitoring systems and wearable medical devices. Industrial systems such as predictive maintenance systems and supply chain management systems. Transportation systems such as connected cars and autonomous vehicles.\n\n--- Slide 7 ---\nPhysical Design of IoT Physical design focuses on hardware components and communication protocols . Physical Components Things (Devices) Physical entities equipped with: Sensors Actuators Communication modules Communication Protocols Used for data transmission. Examples: Wi-Fi Bluetooth ZigBee NFC RFID LoRaWAN",
+      "important_topics": [
+        "Core Theoretical Architecture and Fundamentals",
+        "Operational Lifecycle and Process Transition",
+        "Key Mathematical Formulations and Metrics",
+        "System Constraints, Trade-offs and Best Practices"
+      ],
+      "keywords": [
+        "Slide",
+        "Smart",
+        "communication",
+        "Sensor",
+        "devices",
+        "Definition",
+        "Architecture",
+        "monitoring",
+        "Communication",
+        "Computing",
+        "Applications",
+        "physical",
+        "Layer",
+        "Network",
+        "Sensors",
+        "Cloud"
+      ],
+      "definitions": [
+        {
+          "term": "Wireless Sensor Network",
+          "definition": "A Wireless Sensor Network is a collection of sensor nodes communicating wirelessly to monitor physical conditions."
+        }
+      ],
+      "formulas": [],
+      "exam_focus": {
+        "two_marks": [
+          "Define Slide and give its purpose.",
+          "What are the key characteristics of Smart?",
+          "Differentiate between communication and Sensor.",
+          "State the necessary conditions required for Core Theoretical Architecture and Fundamentals."
+        ],
+        "five_marks": [
+          "Explain the architectural workflow of Core Theoretical Architecture and Fundamentals with a neat schematic diagram.",
+          "Compare and contrast the primary approaches used in Slide.",
+          "Discuss the advantages and limitations of Smart in practical college implementations."
+        ],
+        "ten_sixteen_marks": [
+          "Elaborate in detail on Core Theoretical Architecture and Fundamentals. Explain its internal components, workflow lifecycle, and mathematical formulation with suitable diagrams.",
+          "Provide an in-depth analysis of Operational Lifecycle and Process Transition. Discuss real-world case scenarios, trade-offs, and design considerations for university examinations."
+        ]
+      },
+      "created_at": "2026-10-02T11:40:59.349Z"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "fc_os_1",
+      "document_id": "doc_os_unit_1",
+      "front": "What are the 5 states of a process in an Operating System?",
+      "back": "1. New (being created)\n2. Ready (waiting for CPU allocation)\n3. Running (instructions executing)\n4. Waiting/Blocked (waiting for I/O or event)\n5. Terminated (finished execution).",
+      "topic": "Process Management",
+      "difficulty": "Easy"
+    },
+    {
+      "id": "fc_os_2",
+      "document_id": "doc_os_unit_1",
+      "front": "What are Coffman's 4 necessary conditions for Deadlock?",
+      "back": "1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait.\nIf any ONE condition is prevented, deadlock cannot occur!",
+      "topic": "Deadlocks",
+      "difficulty": "Medium"
+    },
+    {
+      "id": "fc_os_3",
+      "document_id": "doc_os_unit_1",
+      "front": "Why is Context Switch time called \"pure overhead\"?",
+      "back": "Because during the time the CPU takes to save registers/state to PCB and load the new process state, the operating system does NO useful computational work for user processes.",
+      "topic": "CPU Scheduling",
+      "difficulty": "Medium"
+    },
+    {
+      "id": "fc_os_4",
+      "document_id": "doc_os_unit_1",
+      "front": "What is the Convoy Effect in FCFS scheduling?",
+      "back": "A performance bottleneck where many short processes are forced to wait in the ready queue behind a single long, CPU-bound process, resulting in poor CPU and device utilization.",
+      "topic": "CPU Scheduling",
+      "difficulty": "Easy"
+    },
+    {
+      "id": "fc_os_5",
+      "document_id": "doc_os_unit_1",
+      "front": "How does the \"Aging\" technique prevent process starvation?",
+      "back": "Aging gradually increases the priority of a process the longer it waits in the ready queue, ensuring that even low-priority processes eventually gain the highest priority and execute.",
+      "topic": "CPU Scheduling",
+      "difficulty": "Hard"
+    },
+    {
+      "id": "fc_42c1c416",
+      "document_id": "doc_2309d46d",
+      "front": "What is the primary function of an Operating System / DBMS kernel?",
+      "back": "To abstract physical hardware, manage resource allocation safely, prevent deadlocks, and guarantee fair multi-user execution.",
+      "topic": "Operating Systems",
+      "difficulty": "Easy"
+    },
+    {
+      "id": "fc_c9d1b2db",
+      "document_id": "doc_2309d46d",
+      "front": "Explain the difference between Preemptive and Non-Preemptive scheduling.",
+      "back": "In Preemptive scheduling, the CPU can be forcibly taken from a running process (e.g. Round Robin). In Non-Preemptive, the process retains the CPU until it terminates or blocks for I/O (e.g. FCFS).",
+      "topic": "Operating Systems",
+      "difficulty": "Medium"
+    },
+    {
+      "id": "fc_5a820fc9",
+      "document_id": "doc_2309d46d",
+      "front": "What are the 4 Coffman conditions necessary for Deadlock?",
+      "back": "1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait.\nAll four must hold simultaneously for deadlock to exist.",
+      "topic": "Operating Systems",
+      "difficulty": "Medium"
+    },
+    {
+      "id": "fc_43a1db83",
+      "document_id": "doc_2309d46d",
+      "front": "Distinguish between Physical and Logical Data Independence.",
+      "back": "Physical: Ability to modify internal storage schemas without altering conceptual schemas. Logical: Ability to modify conceptual schemas without modifying external application views.",
+      "topic": "Operating Systems",
+      "difficulty": "Hard"
+    },
+    {
+      "id": "fc_dc2a1d62",
+      "document_id": "doc_2309d46d",
+      "front": "Define Degree and Cardinality of a database relation.",
+      "back": "Degree = Number of columns (attributes).\nCardinality = Number of rows (tuples).",
+      "topic": "Operating Systems",
+      "difficulty": "Easy"
+    },
+    {
+      "id": "fc_9481a4c0",
+      "document_id": "doc_4b631dbd",
+      "front": "What is the primary function of an Operating System / DBMS kernel?",
+      "back": "To abstract physical hardware, manage resource allocation safely, prevent deadlocks, and guarantee fair multi-user execution.",
+      "topic": "iot",
+      "difficulty": "Easy"
+    },
+    {
+      "id": "fc_e86bcc46",
+      "document_id": "doc_4b631dbd",
+      "front": "Explain the difference between Preemptive and Non-Preemptive scheduling.",
+      "back": "In Preemptive scheduling, the CPU can be forcibly taken from a running process (e.g. Round Robin). In Non-Preemptive, the process retains the CPU until it terminates or blocks for I/O (e.g. FCFS).",
+      "topic": "iot",
+      "difficulty": "Medium"
+    },
+    {
+      "id": "fc_36ad274e",
+      "document_id": "doc_4b631dbd",
+      "front": "What are the 4 Coffman conditions necessary for Deadlock?",
+      "back": "1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait.\nAll four must hold simultaneously for deadlock to exist.",
+      "topic": "iot",
+      "difficulty": "Medium"
+    },
+    {
+      "id": "fc_cb4ffb9c",
+      "document_id": "doc_4b631dbd",
+      "front": "Distinguish between Physical and Logical Data Independence.",
+      "back": "Physical: Ability to modify internal storage schemas without altering conceptual schemas. Logical: Ability to modify conceptual schemas without modifying external application views.",
+      "topic": "iot",
+      "difficulty": "Hard"
+    },
+    {
+      "id": "fc_c3fc0e9a",
+      "document_id": "doc_4b631dbd",
+      "front": "Define Degree and Cardinality of a database relation.",
+      "back": "Degree = Number of columns (attributes).\nCardinality = Number of rows (tuples).",
+      "topic": "iot",
+      "difficulty": "Easy"
+    }
+  ],
+  "exam_questions": [
+    {
+      "id": "eq_os_1",
+      "document_id": "doc_os_unit_1",
+      "mark_category": "2_marks",
+      "question": "What is a Process Control Block (PCB)? List four important fields stored in it.",
+      "answer_outline": "A PCB is a kernel data structure representing a specific process.",
+      "key_points": [
+        "Process State (Ready/Running/Waiting)",
+        "Program Counter",
+        "CPU Registers",
+        "Memory-management information (page/segment tables)"
+      ]
+    },
+    {
+      "id": "eq_os_2",
+      "document_id": "doc_os_unit_1",
+      "mark_category": "5_marks",
+      "question": "Explain the working of Round Robin CPU scheduling and discuss the impact of Time Quantum size.",
+      "answer_outline": "Round Robin is designed for time-sharing systems where ready processes are arranged in a FIFO queue and allocated CPU time up to 1 time quantum.",
+      "key_points": [
+        "Preemptive scheduling with fixed time slice (q)",
+        "If q is very large -> RR behaves like FCFS (Convoy effect risk)",
+        "If q is very small -> Context switch overhead degrades system performance",
+        "Optimal rule of thumb: 80% of CPU bursts should be shorter than q"
+      ]
+    },
+    {
+      "id": "eq_os_3",
+      "document_id": "doc_os_unit_1",
+      "mark_category": "10_marks",
+      "question": "Explain Coffman's four conditions for deadlock. How does Deadlock Prevention eliminate deadlock by invalidating each condition?",
+      "answer_outline": "Define Deadlock, explain Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait, and provide concrete prevention protocols for each.",
+      "key_points": [
+        "Mutual Exclusion: Spooling or shareable read-only access",
+        "Hold and Wait: Protocol requiring processes to request all resources upfront",
+        "No Preemption: Preempt held resources if a new request cannot be allocated immediately",
+        "Circular Wait: Impose strict global linear numerical ordering of all resource types"
+      ]
+    },
+    {
+      "id": "eq_os_4",
+      "document_id": "doc_os_unit_1",
+      "mark_category": "16_marks",
+      "question": "Elaborate on CPU Scheduling criteria and compare FCFS, SJF, SRTF, and Round Robin scheduling algorithms with illustrative numerical examples.",
+      "answer_outline": "Structure answer with definitions of CPU Utilization, Throughput, Turnaround Time, Waiting Time, Response Time, followed by side-by-side Gantt charts, tabular calculation, and pros/cons.",
+      "key_points": [
+        "Formulas: TAT = CT - AT, WT = TAT - BT",
+        "FCFS simplicity vs Convoy effect",
+        "SJF mathematical optimality for minimum average waiting time",
+        "SRTF preemptive advantages and difficulty in burst estimation",
+        "Round Robin responsiveness in interactive time-sharing systems"
+      ]
+    },
+    {
+      "id": "eq_edf3098c",
+      "document_id": "doc_2309d46d",
+      "mark_category": "2_marks",
+      "question": "Define the term \"Context Switching\" and explain why it causes overhead.",
+      "answer_outline": "Context switching is the procedure of saving the execution state of the running process to its PCB and loading another.",
+      "key_points": [
+        "Saves CPU registers and program counter",
+        "Pure system overhead with no productive user computation",
+        "Hardware support speeds up switching"
+      ]
+    },
+    {
+      "id": "eq_b0a16618",
+      "document_id": "doc_2309d46d",
+      "mark_category": "5_marks",
+      "question": "Compare SJF (Shortest Job First) and Round Robin scheduling algorithms.",
+      "answer_outline": "Provide a structured comparison highlighting scheduling type, optimality, responsiveness, and overhead.",
+      "key_points": [
+        "SJF is optimal for minimum waiting time but risks starvation",
+        "Round Robin provides equitable response times suitable for interactive time-sharing",
+        "Time quantum tuning in RR is crucial"
+      ]
+    },
+    {
+      "id": "eq_29f70bf9",
+      "document_id": "doc_2309d46d",
+      "mark_category": "10_marks",
+      "question": "Discuss Coffman's four conditions for Deadlock and explain Deadlock Prevention techniques.",
+      "answer_outline": "Define Deadlock, explain each necessary condition, and demonstrate how prevention invalidates each.",
+      "key_points": [
+        "Mutual exclusion vs spooling",
+        "Hold and wait prevention protocols",
+        "Resource preemption rules",
+        "Circular wait elimination via linear resource ordering"
+      ]
+    },
+    {
+      "id": "eq_a37abce8",
+      "document_id": "doc_2309d46d",
+      "mark_category": "16_marks",
+      "question": "Explain the ANSI/SPARC Three-Schema Architecture in detail. How does it achieve Logical and Physical Data Independence?",
+      "answer_outline": "Draw the 3-level schematic (External, Conceptual, Internal), define each layer's purpose, and describe mapping between levels.",
+      "key_points": [
+        "External Schema: User customized views",
+        "Conceptual Schema: Global logical structure managed by DBA",
+        "Internal Schema: Physical block/index organization",
+        "Detailed explanation of Physical and Logical independence with schema evolution examples"
+      ]
+    },
+    {
+      "id": "eq_e83ab48e",
+      "document_id": "doc_4b631dbd",
+      "mark_category": "2_marks",
+      "question": "Define the term \"Context Switching\" and explain why it causes overhead.",
+      "answer_outline": "Context switching is the procedure of saving the execution state of the running process to its PCB and loading another.",
+      "key_points": [
+        "Saves CPU registers and program counter",
+        "Pure system overhead with no productive user computation",
+        "Hardware support speeds up switching"
+      ]
+    },
+    {
+      "id": "eq_b21acfb9",
+      "document_id": "doc_4b631dbd",
+      "mark_category": "5_marks",
+      "question": "Compare SJF (Shortest Job First) and Round Robin scheduling algorithms.",
+      "answer_outline": "Provide a structured comparison highlighting scheduling type, optimality, responsiveness, and overhead.",
+      "key_points": [
+        "SJF is optimal for minimum waiting time but risks starvation",
+        "Round Robin provides equitable response times suitable for interactive time-sharing",
+        "Time quantum tuning in RR is crucial"
+      ]
+    },
+    {
+      "id": "eq_00eff6bc",
+      "document_id": "doc_4b631dbd",
+      "mark_category": "10_marks",
+      "question": "Discuss Coffman's four conditions for Deadlock and explain Deadlock Prevention techniques.",
+      "answer_outline": "Define Deadlock, explain each necessary condition, and demonstrate how prevention invalidates each.",
+      "key_points": [
+        "Mutual exclusion vs spooling",
+        "Hold and wait prevention protocols",
+        "Resource preemption rules",
+        "Circular wait elimination via linear resource ordering"
+      ]
+    },
+    {
+      "id": "eq_101371c1",
+      "document_id": "doc_4b631dbd",
+      "mark_category": "16_marks",
+      "question": "Explain the ANSI/SPARC Three-Schema Architecture in detail. How does it achieve Logical and Physical Data Independence?",
+      "answer_outline": "Draw the 3-level schematic (External, Conceptual, Internal), define each layer's purpose, and describe mapping between levels.",
+      "key_points": [
+        "External Schema: User customized views",
+        "Conceptual Schema: Global logical structure managed by DBA",
+        "Internal Schema: Physical block/index organization",
+        "Detailed explanation of Physical and Logical independence with schema evolution examples"
+      ]
+    }
+  ],
+  "chat_messages": [
+    {
+      "id": "msg_1",
+      "document_id": "doc_os_unit_1",
+      "user_id": "usr_demo_student_01",
+      "role": "user",
+      "message": "What is deadlock?",
+      "citations": [],
+      "created_at": "2026-09-25T08:38:17.719Z"
+    },
+    {
+      "id": "msg_2",
+      "document_id": "doc_os_unit_1",
+      "user_id": "usr_demo_student_01",
+      "role": "assistant",
+      "message": "Deadlock is a situation in which two or more processes are waiting indefinitely for resources held by each other in a closed loop. None of the processes can proceed, release their resources, or complete execution.\n\nAccording to the uploaded material, Deadlock occurs only when four conditions hold simultaneously (Coffman's Conditions):\n1. **Mutual Exclusion** (non-shareable resources)\n2. **Hold and Wait** (holding one while requesting another)\n3. **No Preemption** (resources cannot be forcibly taken)\n4. **Circular Wait** (P0 awaits P1, P1 awaits P2 ... Pn awaits P0).",
+      "citations": [
+        "Section 4. Deadlocks",
+        "Coffman's Four Conditions"
+      ],
+      "created_at": "2026-09-25T08:38:19.719Z"
+    },
+    {
+      "id": "msg_efc5675f",
+      "document_id": "doc_os_unit_1",
+      "user_id": "usr_demo_student_01",
+      "role": "user",
+      "message": "What is deadlock?",
+      "citations": [],
+      "created_at": "2026-09-29T09:02:55.780Z"
+    },
+    {
+      "id": "msg_3dc36eed",
+      "document_id": "doc_os_unit_1",
+      "user_id": "usr_demo_student_01",
+      "role": "assistant",
+      "message": "Hello! Based directly on your uploaded study notes:\n\nOPERATING SYSTEMS - UNIT 1: PROCESS MANAGEMENT & DEADLOCKS\n\n**Summary Takeaway:**\nThis is a critical concept frequently tested in semester exams. Would you like me to formulate a 2-mark summary, give another example, or test you with an MCQ on this?",
+      "citations": [
+        "Context Excerpt 1 (OPERATING SYSTEMS - UNIT 1: PROCESS MANAGEMENT & DEADLOCKS  1. INTRODUCTION TO O...)",
+        "Context Excerpt 2 (Process Control Block (PCB): The PCB contains vital information associated with ...)"
+      ],
+      "created_at": "2026-09-29T09:02:55.791Z"
+    },
+    {
+      "id": "msg_669f96d0",
+      "document_id": "doc_os_unit_1",
+      "user_id": "usr_demo_student_01",
+      "role": "user",
+      "message": "what is os",
+      "citations": [],
+      "created_at": "2026-09-29T09:05:34.308Z"
+    },
+    {
+      "id": "msg_e4631f13",
+      "document_id": "doc_os_unit_1",
+      "user_id": "usr_demo_student_01",
+      "role": "assistant",
+      "message": "Hello! Based directly on your uploaded study notes:\n\nOPERATING SYSTEMS - UNIT 1: PROCESS MANAGEMENT & DEADLOCKS\n\n**Summary Takeaway:**\nThis is a critical concept frequently tested in semester exams. Would you like me to formulate a 2-mark summary, give another example, or test you with an MCQ on this?",
+      "citations": [
+        "Context Excerpt 1 (OPERATING SYSTEMS - UNIT 1: PROCESS MANAGEMENT & DEADLOCKS  1. INTRODUCTION TO O...)",
+        "Context Excerpt 2 (Process Control Block (PCB): The PCB contains vital information associated with ...)"
+      ],
+      "created_at": "2026-09-29T09:05:34.316Z"
+    },
+    {
+      "id": "msg_d9061516",
+      "document_id": "doc_4b631dbd",
+      "user_id": "usr_a4e5d2ba",
+      "role": "user",
+      "message": "what is communiation model with example",
+      "citations": [],
+      "created_at": "2026-10-02T11:43:53.295Z"
+    },
+    {
+      "id": "msg_38edd15c",
+      "document_id": "doc_4b631dbd",
+      "user_id": "usr_a4e5d2ba",
+      "role": "assistant",
+      "message": "🌟 **Real-World Example:**\n\nBased on your notes:\n\"--- Slide 15 ---\nExample Web browser requesting a webpage. Smart home app requesting temperature data from a smart thermostat. In this model, a client sends a request to a server, and the server responds with the requested information. Working Client...\"\n\n**Analogy:** Imagine a busy airport runway. Only one airplane can take off at a time (Mutual Exclusion). If two planes demand the exact same slot and neither yields, operations come to a standstill. That is why controlled scheduling is critical!",
+      "citations": [
+        "Context Excerpt 1 (--- Slide 15 --- Example Web browser requesting a webpage. Smart home app reques...)",
+        "Context Excerpt 2 (--- Slide 12 --- Sensors and Actuators Sensors Devices that detect physical chan...)"
+      ],
+      "created_at": "2026-10-02T11:43:53.317Z"
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "quiz_demo_os_01",
+      "user_id": "usr_demo_student_01",
+      "document_id": "doc_os_unit_1",
+      "topic": "Process Management & Deadlocks",
+      "difficulty": "Medium",
+      "question_count": 5,
+      "score": 4,
+      "percentage": 80,
+      "correct_count": 4,
+      "wrong_count": 1,
+      "skipped_count": 0,
+      "time_taken_seconds": 145,
+      "status": "completed",
+      "created_at": "2026-09-27T08:38:17.719Z"
+    },
+    {
+      "id": "quiz_cdfdc8c0",
+      "user_id": "usr_demo_student_01",
+      "document_id": "doc_os_unit_1",
+      "topic": "Process Management & Deadlocks",
+      "difficulty": "Medium",
+      "question_count": 5,
+      "score": 0,
+      "percentage": 0,
+      "correct_count": 0,
+      "wrong_count": 1,
+      "skipped_count": 4,
+      "time_taken_seconds": 95,
+      "status": "completed",
+      "created_at": "2026-09-29T09:02:55.807Z"
+    },
+    {
+      "id": "quiz_12bcad15",
+      "user_id": "usr_a4e5d2ba",
+      "document_id": "doc_4b631dbd",
+      "topic": "iot",
+      "difficulty": "Medium",
+      "question_count": 10,
+      "score": 2,
+      "percentage": 20,
+      "correct_count": 2,
+      "wrong_count": 8,
+      "skipped_count": 0,
+      "time_taken_seconds": 65,
+      "status": "completed",
+      "created_at": "2026-10-02T11:44:55.942Z"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_os_1",
+      "quiz_id": "quiz_demo_os_01",
+      "question": "Which of the following process states represents a process waiting to be assigned to the processor?",
+      "option_a": "Blocked",
+      "option_b": "Ready",
+      "option_c": "New",
+      "option_d": "Waiting",
+      "correct_answer": "B",
+      "explanation": "The Ready state indicates that a process is loaded in main memory and ready for CPU allocation, waiting for the scheduler."
+    },
+    {
+      "id": "q_os_2",
+      "quiz_id": "quiz_demo_os_01",
+      "question": "What is the phenomenon in FCFS scheduling where short processes wait behind a long CPU-bound process called?",
+      "option_a": "Starvation",
+      "option_b": "Aging",
+      "option_c": "Convoy Effect",
+      "option_d": "Deadlock",
+      "correct_answer": "C",
+      "explanation": "The Convoy Effect occurs in FCFS when smaller I/O or CPU processes are held up behind one massive CPU-burst job."
+    },
+    {
+      "id": "q_os_3",
+      "quiz_id": "quiz_demo_os_01",
+      "question": "Which scheduling algorithm is mathematically provable to yield the minimum average waiting time?",
+      "option_a": "First-Come, First-Served (FCFS)",
+      "option_b": "Round Robin (RR)",
+      "option_c": "Shortest Job First (SJF)",
+      "option_d": "Priority Scheduling",
+      "correct_answer": "C",
+      "explanation": "SJF (Shortest Job First) is provably optimal because assigning the CPU to shorter jobs first reduces the waiting time of all subsequent jobs."
+    },
+    {
+      "id": "q_os_4",
+      "quiz_id": "quiz_demo_os_01",
+      "question": "Which of the following is NOT one of Coffman's four necessary conditions for deadlock?",
+      "option_a": "Mutual Exclusion",
+      "option_b": "Hold and Wait",
+      "option_c": "Preemption of Resources",
+      "option_d": "Circular Wait",
+      "correct_answer": "C",
+      "explanation": "The necessary condition is NO PREEMPTION. If preemption of resources is allowed, deadlock cannot occur."
+    },
+    {
+      "id": "q_os_5",
+      "quiz_id": "quiz_demo_os_01",
+      "question": "What is the purpose of the \"Aging\" technique in CPU scheduling?",
+      "option_a": "To speed up context switches",
+      "option_b": "To prevent starvation of low-priority processes",
+      "option_c": "To detect deadlocks dynamically",
+      "option_d": "To reduce time quantum in Round Robin",
+      "correct_answer": "B",
+      "explanation": "Aging gradually increases the priority of processes that wait in the system for long durations, resolving the starvation problem."
+    },
+    {
+      "id": "q_30643780",
+      "quiz_id": "quiz_cdfdc8c0",
+      "question": "Which condition occurs when a set of processes are blocked because each holds a resource while waiting for another?",
+      "option_a": "Race Condition",
+      "option_b": "Context Switch",
+      "option_c": "Deadlock",
+      "option_d": "Thrashing",
+      "correct_answer": "C",
+      "explanation": "Deadlock is a stalemate where processes hold resources and wait indefinitely for others in a cyclic dependency."
+    },
+    {
+      "id": "q_ff9e7060",
+      "quiz_id": "quiz_cdfdc8c0",
+      "question": "Which of the following data structures stores state, program counter, and CPU registers for an active process?",
+      "option_a": "File Allocation Table (FAT)",
+      "option_b": "Process Control Block (PCB)",
+      "option_c": "Translation Lookaside Buffer (TLB)",
+      "option_d": "Virtual Memory Page Table",
+      "correct_answer": "B",
+      "explanation": "The Process Control Block (PCB) contains all vital bookkeeping data for a specific process."
+    },
+    {
+      "id": "q_37b06c64",
+      "quiz_id": "quiz_cdfdc8c0",
+      "question": "How is Turnaround Time (TAT) mathematically calculated for a process?",
+      "option_a": "Waiting Time - Burst Time",
+      "option_b": "Completion Time - Arrival Time",
+      "option_c": "Arrival Time + Burst Time",
+      "option_d": "Response Time / Throughput",
+      "correct_answer": "B",
+      "explanation": "Turnaround Time measures total time spent from process arrival to final completion: TAT = CT - AT."
+    },
+    {
+      "id": "q_66ba9cdd",
+      "quiz_id": "quiz_cdfdc8c0",
+      "question": "Which technique is employed in Priority Scheduling to prevent indefinite starvation of low-priority processes?",
+      "option_a": "Aging",
+      "option_b": "Paging",
+      "option_c": "Compaction",
+      "option_d": "Spooling",
+      "correct_answer": "A",
+      "explanation": "Aging progressively elevates the priority of processes that have spent prolonged intervals waiting in the ready queue."
+    },
+    {
+      "id": "q_b1ebf325",
+      "quiz_id": "quiz_cdfdc8c0",
+      "question": "Why is Shortest Job First (SJF) scheduling considered theoretically optimal?",
+      "option_a": "It guarantees zero context switching",
+      "option_b": "It provably yields the minimum average waiting time",
+      "option_c": "It eliminates priority inversion completely",
+      "option_d": "It requires no prior knowledge of CPU burst times",
+      "correct_answer": "B",
+      "explanation": "Scheduling the shortest burst first minimizes the waiting time incurred by all subsequent waiting processes."
+    },
+    {
+      "id": "q_03feadb3",
+      "quiz_id": "quiz_12bcad15",
+      "question": "Which of the following data structures stores state, program counter, and CPU registers for an active process?",
+      "option_a": "File Allocation Table (FAT)",
+      "option_b": "Process Control Block (PCB)",
+      "option_c": "Translation Lookaside Buffer (TLB)",
+      "option_d": "Virtual Memory Page Table",
+      "correct_answer": "B",
+      "explanation": "The Process Control Block (PCB) contains all vital bookkeeping data for a specific process."
+    },
+    {
+      "id": "q_b0eddce9",
+      "quiz_id": "quiz_12bcad15",
+      "question": "In relational database terminology, what does \"Cardinality\" refer to?",
+      "option_a": "The total number of columns (attributes) in a table",
+      "option_b": "The total number of rows (tuples) in a table",
+      "option_c": "The memory size of the primary key",
+      "option_d": "The index depth of the B-Tree",
+      "correct_answer": "B",
+      "explanation": "Cardinality is the count of tuples (rows), while Degree is the count of attributes (columns)."
+    },
+    {
+      "id": "q_9f8ebd06",
+      "quiz_id": "quiz_12bcad15",
+      "question": "What is the primary definition of a \"Process\" in computer systems?",
+      "option_a": "A passive program residing on secondary storage",
+      "option_b": "A program currently in execution with program counter and state",
+      "option_c": "A hardware component that manages cache memory",
+      "option_d": "An encrypted security token used for authentication",
+      "correct_answer": "B",
+      "explanation": "A process is an active entity representing a program in execution, accompanied by PC, registers, stack, and heap."
+    },
+    {
+      "id": "q_3fe0ecaa",
+      "quiz_id": "quiz_12bcad15",
+      "question": "What happens in Round Robin scheduling if the time quantum is chosen to be excessively large?",
+      "option_a": "The algorithm degrades into First-Come First-Served (FCFS)",
+      "option_b": "The context switch overhead becomes prohibitive",
+      "option_c": "Starvation of long jobs immediately occurs",
+      "option_d": "Processes execute in reverse arrival order",
+      "correct_answer": "A",
+      "explanation": "If the time quantum is larger than any process CPU burst, every job finishes in one slice, behaving identically to FCFS."
+    },
+    {
+      "id": "q_de978968",
+      "quiz_id": "quiz_12bcad15",
+      "question": "What does the Entity Integrity constraint state in the Relational Model?",
+      "option_a": "Foreign keys must match a valid primary key",
+      "option_b": "No primary key attribute value can be NULL",
+      "option_c": "All attribute values must be floating point numbers",
+      "option_d": "Tables must contain at least one tuple",
+      "correct_answer": "B",
+      "explanation": "Entity integrity requires primary keys to be unique and non-null so each row can be definitively identified."
+    },
+    {
+      "id": "q_e3280866",
+      "quiz_id": "quiz_12bcad15",
+      "question": "In the ANSI/SPARC Three-Schema Architecture, which level describes how data is physically stored on disk?",
+      "option_a": "Conceptual / Logical Level",
+      "option_b": "External / View Level",
+      "option_c": "Internal / Physical Level",
+      "option_d": "Application Level",
+      "correct_answer": "C",
+      "explanation": "The Internal or Physical level describes data structures, indexing, and record storage on secondary devices."
+    },
+    {
+      "id": "q_a44dbcc8",
+      "quiz_id": "quiz_12bcad15",
+      "question": "What is the primary definition of a \"Process\" in computer systems?",
+      "option_a": "A passive program residing on secondary storage",
+      "option_b": "A program currently in execution with program counter and state",
+      "option_c": "A hardware component that manages cache memory",
+      "option_d": "An encrypted security token used for authentication",
+      "correct_answer": "B",
+      "explanation": "A process is an active entity representing a program in execution, accompanied by PC, registers, stack, and heap."
+    },
+    {
+      "id": "q_c657c38a",
+      "quiz_id": "quiz_12bcad15",
+      "question": "Which technique is employed in Priority Scheduling to prevent indefinite starvation of low-priority processes?",
+      "option_a": "Aging",
+      "option_b": "Paging",
+      "option_c": "Compaction",
+      "option_d": "Spooling",
+      "correct_answer": "A",
+      "explanation": "Aging progressively elevates the priority of processes that have spent prolonged intervals waiting in the ready queue."
+    },
+    {
+      "id": "q_d9e07163",
+      "quiz_id": "quiz_12bcad15",
+      "question": "Why is Shortest Job First (SJF) scheduling considered theoretically optimal?",
+      "option_a": "It guarantees zero context switching",
+      "option_b": "It provably yields the minimum average waiting time",
+      "option_c": "It eliminates priority inversion completely",
+      "option_d": "It requires no prior knowledge of CPU burst times",
+      "correct_answer": "B",
+      "explanation": "Scheduling the shortest burst first minimizes the waiting time incurred by all subsequent waiting processes."
+    },
+    {
+      "id": "q_4c7418dd",
+      "quiz_id": "quiz_12bcad15",
+      "question": "Which technique is employed in Priority Scheduling to prevent indefinite starvation of low-priority processes?",
+      "option_a": "Aging",
+      "option_b": "Paging",
+      "option_c": "Compaction",
+      "option_d": "Spooling",
+      "correct_answer": "A",
+      "explanation": "Aging progressively elevates the priority of processes that have spent prolonged intervals waiting in the ready queue."
+    }
+  ],
+  "quiz_answers": [
+    {
+      "id": "ans_1",
+      "quiz_id": "quiz_demo_os_01",
+      "question_id": "q_os_1",
+      "selected_answer": "B",
+      "is_correct": true,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_2",
+      "quiz_id": "quiz_demo_os_01",
+      "question_id": "q_os_2",
+      "selected_answer": "C",
+      "is_correct": true,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_3",
+      "quiz_id": "quiz_demo_os_01",
+      "question_id": "q_os_3",
+      "selected_answer": "C",
+      "is_correct": true,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_4",
+      "quiz_id": "quiz_demo_os_01",
+      "question_id": "q_os_4",
+      "selected_answer": "B",
+      "is_correct": false,
+      "is_marked_for_review": true
+    },
+    {
+      "id": "ans_5",
+      "quiz_id": "quiz_demo_os_01",
+      "question_id": "q_os_5",
+      "selected_answer": "B",
+      "is_correct": true,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_056d703d",
+      "quiz_id": "quiz_cdfdc8c0",
+      "question_id": "q_30643780",
+      "selected_answer": "B",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_6731f0bc",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_03feadb3",
+      "selected_answer": "A",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_fc493469",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_b0eddce9",
+      "selected_answer": "B",
+      "is_correct": true,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_991870b9",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_9f8ebd06",
+      "selected_answer": "B",
+      "is_correct": true,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_f6cedc04",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_3fe0ecaa",
+      "selected_answer": "B",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_d866ba9d",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_de978968",
+      "selected_answer": "C",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_16ed03b7",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_e3280866",
+      "selected_answer": "B",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_27a81f0e",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_a44dbcc8",
+      "selected_answer": "A",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_30179e2b",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_c657c38a",
+      "selected_answer": "B",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_9e633626",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_d9e07163",
+      "selected_answer": "D",
+      "is_correct": false,
+      "is_marked_for_review": false
+    },
+    {
+      "id": "ans_3444ea1f",
+      "quiz_id": "quiz_12bcad15",
+      "question_id": "q_4c7418dd",
+      "selected_answer": "B",
+      "is_correct": false,
+      "is_marked_for_review": false
+    }
+  ],
+  "login_logs": [
+    {
+      "id": "log_421a93e6",
+      "user_id": "usr_570a402e",
+      "email": "nataraj.storage@college.edu",
+      "name": "Nataraj Test User",
+      "type": "registration_login",
+      "login_at": "2026-10-02T12:29:46.443Z",
+      "ip": "::1",
+      "user_agent": "node"
+    },
+    {
+      "id": "log_dd753e9e",
+      "user_id": "usr_570a402e",
+      "email": "nataraj.storage@college.edu",
+      "name": "Nataraj Test User",
+      "type": "user_login",
+      "login_at": "2026-10-02T12:29:46.658Z",
+      "ip": "::1",
+      "user_agent": "node"
+    }
+  ]
+}

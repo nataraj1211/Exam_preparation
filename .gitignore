@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production build
+dist/
+*/dist/
+build/
+
+# Environment Variables
+.env
+*.env
+backend/.env
+!.env.example
+!backend/.env.example
+
+# Uploaded student files (keep folder, exclude uploaded binaries)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# System & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
